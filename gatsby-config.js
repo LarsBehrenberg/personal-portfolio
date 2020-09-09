@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 require('dotenv').config({
   path: `.env`,
 })
@@ -31,10 +32,14 @@ module.exports = {
       options: {
         repositoryName: 'larsbehrenberg',
         accessToken: `${process.env.API_KEY}`,
+        schemas: {
+          page: require('./src/schemas/about.json'),
+        },
         // Get the correct URLs in blog posts
         linkResolver: () => prismicLinkResolver,
         // PrismJS highlighting for labels and slices
         htmlSerializer: () => prismicHtmlSerializer,
+        shouldDownloadImage: () => true,
       },
     },
     'gatsby-plugin-lodash',

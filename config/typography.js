@@ -1,14 +1,14 @@
 import Typography from 'typography'
 
-// This website uses the system font stack after the placed "Lora" font
+// This website uses the system font stack after the placed "Nunito" font
 // The scaleRatio will be overwritten for smaller breakpoints in src/components/Layout
 
 const typography = new Typography({
-  title: 'Gatsby Starter Prismic.io - i18n',
+  title: 'Lars Behrenberg | Freelance Website Developer',
   baseFontSize: '18px',
   baseLineHeight: 1.45,
   headerFontFamily: [
-    'Lora',
+    'Nunito',
     '-apple-system',
     'BlinkMacSystemFont',
     'Segoe UI',
@@ -21,7 +21,7 @@ const typography = new Typography({
     'Segoe UI Symbol',
   ],
   bodyFontFamily: [
-    'Lora',
+    'Nunito',
     '-apple-system',
     'BlinkMacSystemFont',
     'Segoe UI',

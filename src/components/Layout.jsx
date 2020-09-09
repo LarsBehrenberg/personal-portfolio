@@ -3,47 +3,19 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
 import { Global, css } from '@emotion/core'
-import styled from '@emotion/styled'
 import { ThemeProvider } from 'emotion-theming'
 import '@reach/skip-nav/styles.css'
 
-import SkipNavLink from './SkipNavLink'
 import { theme, reset } from '../styles'
 import i18n from '../../config/i18n'
+import { Header, Particles, SkipNavLink } from '.'
 
-import 'typeface-lora'
 import 'typeface-source-sans-pro'
+import 'typeface-nunito'
 
 const globalStyle = css`
   ${reset}
-  h1, h2, h3, h4, h5, h6 {
-    color: ${theme.colors.black};
-  }
-  html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  body {
-    color: ${theme.colors.greyDarker};
-    background-color: ${theme.colors.bg};
-  }
-  ::selection {
-    color: ${theme.colors.bg};
-    background-color: ${theme.colors.primary};
-  }
-  a {
-    color: ${theme.colors.primary};
-    transition: all 0.4s ease-in-out;
-    text-decoration: none;
-    font-weight: 700;
-    font-style: italic;
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-  }
   @media (max-width: ${theme.breakpoints.m}) {
     html {
       font-size: 16px !important;
@@ -71,13 +43,6 @@ const globalStyle = css`
   }
 `
 
-const LocaleSwitcher = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 1rem;
-`
-
 const LocaleContext = React.createContext()
 
 const Layout = ({ children, pageContext: { locale } }) => (
@@ -86,16 +51,9 @@ const Layout = ({ children, pageContext: { locale } }) => (
       <>
         <Global styles={globalStyle} />
         <SkipNavLink />
-        <LocaleSwitcher data-name="locale-switcher">
-          <Link hrefLang="de-de" to="/">
-            DE
-          </Link>{' '}
-          /{' '}
-          <Link hrefLang="en-gb" to="/en">
-            EN
-          </Link>
-        </LocaleSwitcher>
+        <Header />
         {children}
+        <Particles />
       </>
     </ThemeProvider>
   </LocaleContext.Provider>

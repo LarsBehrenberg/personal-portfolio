@@ -44,15 +44,15 @@ const IconContainer = styled.div`
   }
 `
 
-const About = ({ pageContext: { locale }, location }) => {
+const About = ({ data, pageContext: { locale }, location }) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
-
+  console.log(data)
   return (
     <>
       <SEO pathname={location.pathname} locale={locale} />
       <Container>
-        <h1>About Me</h1>
+        {/* <h1>{about.data.title.text}</h1> */}
         <Image>
           {/* <Img
           fluid={data.file.childImageSharp.fluid}
@@ -91,64 +91,7 @@ const About = ({ pageContext: { locale }, location }) => {
             </IconContext.Provider>
           </IconContainer>
         </Image>
-        <p>
-          <strong>Lars Behrenberg - Web Developer</strong>
-        </p>
-
-        <p>
-          For many people websites have always been a struggle. A necessity for
-          your business, but something difficult in the back of your head that
-          you don&rsquo;t really want to deal with.
-        </p>
-
-        <blockquote style={{ textAlign: 'center', fontWeight: '800' }}>
-          How do you reach your costumers, provide information and present your
-          business online that it truly represents you and what you do?
-        </blockquote>
-
-        <p>This is difficult and is hard to do right.</p>
-
-        <p>
-          In 2016 I did my first website and since then have grappled with this
-          question.
-        </p>
-
-        <p>
-          But after years of experience and a variety of clients from personal
-          portfolios to local businesses and even travel blogs, I will make sure
-          to capture you and your business in a single website, similar to a
-          moving image telling your visitor about what you do and who you are.
-        </p>
-
-        <p>
-          The first website I did was for a small local business back in my
-          hometown in Germany. After this first project, I wanted to understand
-          more about not only the internet, but also about the people that all
-          this information on the internet is about.
-        </p>
-
-        <p>
-          So I went all out and traveled the world for 3 years. I connected with
-          people from all around the world and studied the internet and its
-          technologies. I found my passion in connecting the internet with the
-          people around me.&nbsp;
-        </p>
-
-        <p>
-          After these years of traveling, I found myself in Japan, the country
-          where I felt I could learn the most about its people, the internet and
-          myself. I am now based in Nagano, Japan, but travel frequently to
-          Europe and all other parts of the world.
-        </p>
-
-        <p>
-          If any of this sounded like this is for you, please feel free to
-          contact me on{' '}
-          <a className="mailtoui" href="mailto:l.behrenberg@gmail.com">
-            l.behrenberg@gmail.com
-          </a>
-          .
-        </p>
+        {/* <div dangerouslySetInnerHTML={{ __html: about.data.body.html }} /> */}
       </Container>
     </>
   )
@@ -158,28 +101,16 @@ export default About
 
 export const pageQuery = graphql`
   query AboutQuery($locale: String!) {
-    homepage: prismicHomepage(lang: { eq: $locale }) {
+    prismicAbout(lang: { eq: $locale }) {
       data {
-        title {
+        body {
           text
         }
-        content {
-          html
-        }
-      }
-    }
-    social: allPrismicHeroLinks(filter: { lang: { eq: $locale } }) {
-      edges {
-        node {
-          data {
-            body {
-              primary {
-                label {
-                  text
-                }
-                link {
-                  url
-                }
+        profile_image {
+          localFile {
+            childImageSharp {
+              fixed(width: 500, height: 300) {
+                ...GatsbyImageSharpFixed_withWebp
               }
             }
           }

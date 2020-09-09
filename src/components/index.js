@@ -1,9 +1,6 @@
-import Listing from './Listing'
 import SEO from './SEO'
-import Footer from './Footer'
+import Particles from './Particles'
 import Header from './Header'
-import SliceZone from './SliceZone'
-import Title from './Title'
-import Wrapper from './Wrapper'
+import SkipNavLink from './SkipNavLink'
 
-export { Footer, Listing, SEO, Wrapper, SliceZone, Title, Header }
+export { SEO, Particles, Header, SkipNavLink }
