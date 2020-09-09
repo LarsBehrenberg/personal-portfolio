@@ -9,7 +9,6 @@ import styled from '@emotion/styled'
 import { ThemeProvider } from 'emotion-theming'
 import '@reach/skip-nav/styles.css'
 
-import Footer from './Footer'
 import SkipNavLink from './SkipNavLink'
 import { theme, reset } from '../styles'
 import i18n from '../../config/i18n'
@@ -84,8 +83,8 @@ const LocaleContext = React.createContext()
 const Layout = ({ children, pageContext: { locale } }) => {
   const data = useStaticQuery(query)
   const footer = data.allPrismicHomepage.edges
-    .filter(edge => edge.node.lang === locale)
-    .map(r => r.node.data.footer.html)
+    .filter((edge) => edge.node.lang === locale)
+    .map((r) => r.node.data.footer.html)
     .toString()
 
   return (
@@ -104,9 +103,6 @@ const Layout = ({ children, pageContext: { locale } }) => {
             </Link>
           </LocaleSwitcher>
           {children}
-          <Footer>
-            <div dangerouslySetInnerHTML={{ __html: footer }} />
-          </Footer>
         </>
       </ThemeProvider>
     </LocaleContext.Provider>
