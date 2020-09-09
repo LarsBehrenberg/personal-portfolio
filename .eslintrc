@@ -45,6 +45,7 @@
     "space-before-function-paren": 0,
     "import/extensions": 0,
     "react/no-danger": 0,
+    "react/prop-types": 0,
     "react/display-name": 1,
     "react/react-in-jsx-scope": 0,
     "react/forbid-prop-types": 0,
@@ -66,14 +67,15 @@
         "allowTemplateLiterals": true
       }
     ],
-    "indent": ["error", 2, {"SwitchCase": 1}],
+    "indent": ["error", 2, {
+      "SwitchCase": 1
+    }],
     "prettier/prettier": [
       "error",
       {
         "trailingComma": "es5",
         "semi": false,
-        "singleQuote": true,
-        "printWidth": 120
+        "singleQuote": true
       }
     ],
     "jsx-a11y/href-no-hash": "off",

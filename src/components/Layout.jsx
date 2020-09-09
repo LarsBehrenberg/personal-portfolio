@@ -3,7 +3,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { Link } from 'gatsby'
 import { Global, css } from '@emotion/core'
 import styled from '@emotion/styled'
 import { ThemeProvider } from 'emotion-theming'
@@ -80,53 +80,45 @@ const LocaleSwitcher = styled.div`
 
 const LocaleContext = React.createContext()
 
-const Layout = ({ children, pageContext: { locale } }) => {
-  const data = useStaticQuery(query)
-  const footer = data.allPrismicHomepage.edges
-    .filter((edge) => edge.node.lang === locale)
-    .map((r) => r.node.data.footer.html)
-    .toString()
-
-  return (
-    <LocaleContext.Provider value={{ locale, i18n }}>
-      <ThemeProvider theme={theme}>
-        <>
-          <Global styles={globalStyle} />
-          <SkipNavLink />
-          <LocaleSwitcher data-name="locale-switcher">
-            <Link hrefLang="de-de" to="/">
-              DE
-            </Link>{' '}
-            /{' '}
-            <Link hrefLang="en-gb" to="/en">
-              EN
-            </Link>
-          </LocaleSwitcher>
-          {children}
-        </>
-      </ThemeProvider>
-    </LocaleContext.Provider>
-  )
-}
+const Layout = ({ children, pageContext: { locale } }) => (
+  <LocaleContext.Provider value={{ locale, i18n }}>
+    <ThemeProvider theme={theme}>
+      <>
+        <Global styles={globalStyle} />
+        <SkipNavLink />
+        <LocaleSwitcher data-name="locale-switcher">
+          <Link hrefLang="de-de" to="/">
+            DE
+          </Link>{' '}
+          /{' '}
+          <Link hrefLang="en-gb" to="/en">
+            EN
+          </Link>
+        </LocaleSwitcher>
+        {children}
+      </>
+    </ThemeProvider>
+  </LocaleContext.Provider>
+)
 
 export { LocaleContext, Layout }
 
-const query = graphql`
-  query LayoutQuery {
-    allPrismicHomepage {
-      edges {
-        node {
-          lang
-          data {
-            footer {
-              html
-            }
-          }
-        }
-      }
-    }
-  }
-`
+// const query = graphql`
+//   query LayoutQuery {
+//     allPrismicHomepage {
+//       edges {
+//         node {
+//           lang
+//           data {
+//             footer {
+//               html
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
 
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
