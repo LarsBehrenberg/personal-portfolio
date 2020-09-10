@@ -5,7 +5,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Global, css } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
-import '@reach/skip-nav/styles.css'
 
 import { theme, reset } from '../styles'
 import i18n from '../../config/i18n'
