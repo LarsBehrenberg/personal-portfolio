@@ -662,8 +662,8 @@ const reset = css`
     padding-bottom: calc(0.725rem - 1px);
   }
 
-  th:first-child,
-  td:first-child {
+  th:first-of-type,
+  td:first-of-type {
     padding-left: 0;
   }
 
