@@ -53,12 +53,12 @@ const Content = styled.div`
 const LocaleContext = React.createContext()
 
 const Layout = ({ children, pageContext: { locale }, location }) => (
-  <LocaleContext.Provider value={{ locale, i18n }}>
+  <LocaleContext.Provider value={{ locale, i18n, location }}>
     <ThemeProvider theme={theme}>
       <>
         <Global styles={globalStyle} />
         <SkipNavLink />
-        <Header />
+        <Header lang={{ locale, i18n, location }} />
         <Content>
           <Transition location={location}>
             <main>{children}</main>

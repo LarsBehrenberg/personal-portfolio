@@ -73,41 +73,57 @@ const LocaleSwitcher = styled.div`
   padding: 1rem; */
 `
 
-const Header = () => (
-  <SiteHeader>
-    <Content>
-      <LocalizedLink to="/">
-        <img
-          src={Logo}
-          alt="Behrenberg Webdevelopment"
-          style={{ width: '60px' }}
-        />
-      </LocalizedLink>
-      <Menu>
-        <HomeLink to="/">Home</HomeLink>
-        <NavLink to="/latest-work">Latest Work</NavLink>
-        {/* <NavLink to="/insights">Insights</NavLink> */}
-        <NavLink to="/about">About</NavLink>
-        <a className="mailtoui" href="mailto:l.behrenberg@gmail.com">
-          Get In Touch
-        </a>
-      </Menu>
+const Header = ({ lang }) => {
+  const regex = /\/de\/|\/de|\//gi
 
-      {/* <a className="mailtoui" href="mailto:l.behrenberg@gmail.com">
+  return (
+    <SiteHeader>
+      <Content>
+        <LocalizedLink to="/">
+          <img
+            src={Logo}
+            alt="Behrenberg Webdevelopment"
+            style={{ width: '60px' }}
+          />
+        </LocalizedLink>
+        <Menu>
+          <HomeLink to="/">Home</HomeLink>
+          <NavLink to="/latest-work">Latest Work</NavLink>
+          {/* <NavLink to="/insights">Insights</NavLink> */}
+          <NavLink to="/about">About</NavLink>
+          <a className="mailtoui" href="mailto:l.behrenberg@gmail.com">
+            Get In Touch
+          </a>
+        </Menu>
+
+        {/* <a className="mailtoui" href="mailto:l.behrenberg@gmail.com">
         Hire Me
       </a> */}
 
-      <LocaleSwitcher data-name="locale-switcher">
-        <Link hrefLang="en-us" to="/">
-          EN
-        </Link>{' '}
-        /{' '}
-        <Link hrefLang="de-de" to="/de">
-          DE
-        </Link>
-      </LocaleSwitcher>
-    </Content>
-  </SiteHeader>
-)
+        <LocaleSwitcher data-name="locale-switcher">
+          {Object.values(lang.i18n).map(({ path, locale, ogLang }) => (
+            <Link
+              hrefLang={locale}
+              key={ogLang}
+              to={`/${lang.location.pathname.replace(
+                regex,
+                path === 'en' ? '' : path + '/'
+              )}`}
+            >
+              {path.toUpperCase()}{' '}
+            </Link>
+          ))}
+          {/* <Link hrefLang="en-us" to="/">
+            EN
+          </Link>{' '}
+          /{' '}
+          <Link hrefLang="de-de" to="/de">
+            DE
+          </Link> */}
+        </LocaleSwitcher>
+      </Content>
+    </SiteHeader>
+  )
+}
 
 export default Header
