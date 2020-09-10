@@ -106,15 +106,6 @@ export const pageQuery = graphql`
         body {
           text
         }
-        profile_image {
-          localFile {
-            childImageSharp {
-              fixed(width: 500, height: 300) {
-                ...GatsbyImageSharpFixed_withWebp
-              }
-            }
-          }
-        }
       }
     }
   }
