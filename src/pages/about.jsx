@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
 import { IconContext } from 'react-icons'
 import { FaGithub, FaLinkedinIn, FaXing } from 'react-icons/fa'
 import { AiOutlineMail } from 'react-icons/ai'
@@ -44,22 +45,22 @@ const IconContainer = styled.div`
   }
 `
 
-const About = ({ data, pageContext: { locale }, location }) => {
+const About = ({ data: { about }, pageContext: { locale }, location }) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
-  console.log(data)
+
   return (
     <>
       <SEO pathname={location.pathname} locale={locale} />
       <Container>
-        {/* <h1>{about.data.title.text}</h1> */}
+        <h1>{about.data.title.text}</h1>
         <Image>
-          {/* <Img
-          fluid={data.file.childImageSharp.fluid}
-          alt=""
-          style={{ width: '300px', objectFit: 'cover' }}
-          className="image"
-        /> */}
+          <Img
+            fluid={about.data.profile_image.localFile.childImageSharp.fluid}
+            alt="Personal image"
+            style={{ width: '300px', objectFit: 'cover' }}
+            className="image"
+          />
 
           <IconContainer>
             <IconContext.Provider value={{ color: '#ffffff90', size: '1.4em' }}>
@@ -91,7 +92,7 @@ const About = ({ data, pageContext: { locale }, location }) => {
             </IconContext.Provider>
           </IconContainer>
         </Image>
-        {/* <div dangerouslySetInnerHTML={{ __html: about.data.body.html }} /> */}
+        <div dangerouslySetInnerHTML={{ __html: about.data.body.html }} />
       </Container>
     </>
   )
@@ -101,10 +102,22 @@ export default About
 
 export const pageQuery = graphql`
   query AboutQuery($locale: String!) {
-    prismicAbout(lang: { eq: $locale }) {
+    about: prismicAbout(lang: { eq: $locale }) {
       data {
-        body {
+        title {
           text
+        }
+        body {
+          html
+        }
+        profile_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 1000) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
         }
       }
     }
