@@ -9,7 +9,7 @@ import { ThemeProvider } from 'emotion-theming'
 
 import { theme, reset } from '../styles'
 import i18n from '../../config/i18n'
-import { Header, Particles, SkipNavLink } from '.'
+import { Header, Particles, SkipNavLink, Footer } from '.'
 
 import 'typeface-source-sans-pro'
 import 'typeface-nunito'
@@ -59,7 +59,10 @@ const Layout = ({ children, pageContext: { locale } }) => (
         <Global styles={globalStyle} />
         <SkipNavLink />
         <Header />
-        <Content>{children}</Content>
+        <Content>
+          <main>{children}</main>
+          <Footer />
+        </Content>
         <Particles />
       </>
     </ThemeProvider>
@@ -67,23 +70,6 @@ const Layout = ({ children, pageContext: { locale } }) => (
 )
 
 export { LocaleContext, Layout }
-
-// const query = graphql`
-//   query LayoutQuery {
-//     allPrismicHomepage {
-//       edges {
-//         node {
-//           lang
-//           data {
-//             footer {
-//               html
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
 
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
