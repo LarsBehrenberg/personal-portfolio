@@ -1,6 +1,9 @@
 import { css } from '@emotion/core'
 
 const reset = css`
+  html {
+    background-color: rgb(21, 50, 68);
+  }
   code {
     background-color: #ffffff50;
   }
