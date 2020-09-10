@@ -9,7 +9,7 @@ const LocalizedLink = ({ to, ...props }) => {
   const isIndex = to === '/'
   const path = locales[locale].default
     ? to
-    : `${locales[locale].path}${isIndex ? '' : `${to}`}`
+    : `/${locales[locale].path}${isIndex ? '' : `${to}`}`
 
   return <Link {...props} to={path} />
 }
