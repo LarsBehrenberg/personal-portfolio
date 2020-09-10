@@ -46,8 +46,8 @@ const ButtonContainer = styled.div`
 const LandingBio = ({ title, subtitle, intro }) => (
   <OuterContainer>
     <Container>
-      <Subtitle>{title}</Subtitle>
-      <NameHeader>{subtitle}</NameHeader>
+      <Subtitle>{subtitle}</Subtitle>
+      <NameHeader>{title}</NameHeader>
       <div dangerouslySetInnerHTML={{ __html: intro }} />
       <ButtonContainer>
         <Link to="/latest-work">Latest Work</Link>
