@@ -6,6 +6,11 @@ const OuterContainer = styled.div`
   & > div:nth-of-type(2n-1) {
     flex-direction: row-reverse;
 
+    .work_description {
+      padding-left: 0;
+      padding-right: 3rem;
+    }
+
     @media (max-width: 800px) {
       flex-direction: column;
     }
@@ -28,10 +33,15 @@ const Container = styled.div`
   }
 `
 
-const Image = styled.div`
+const Image = styled.a`
   background: grey;
   width: 50%;
   max-height: 330px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  &:hover {
+    box-shadow: 0 40px 45px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
+  }
 
   @media (max-width: 800px) {
     height: 300px;
@@ -53,13 +63,13 @@ const Text = styled.div`
   }
 
   @media (min-width: 1200px) {
-    padding: 2rem 3rem 1rem;
+    padding: 2rem 0 1rem 3rem;
   }
 `
 
-const SingleWork = ({ title, description, image }) => (
+const SingleWork = ({ title, description, image, link }) => (
   <Container>
-    <Image>
+    <Image href={link} target="_blank" rel="noopener noreferrer">
       <Img
         fluid={image}
         alt=""
@@ -68,7 +78,7 @@ const SingleWork = ({ title, description, image }) => (
         className="image"
       />
     </Image>
-    <Text>
+    <Text className="work_description">
       <h1>{title}</h1>
       <div dangerouslySetInnerHTML={{ __html: description }} />
     </Text>
@@ -78,11 +88,15 @@ const SingleWork = ({ title, description, image }) => (
 const WorksList = ({ works, id }) => (
   <OuterContainer id={id || 'works'}>
     {works.map(
-      ({ id, primary: { work_title, work_image, work_description } }) => (
+      ({
+        id,
+        primary: { work_title, work_image, work_description, work_link },
+      }) => (
         <SingleWork
           key={id || work_title}
           title={work_title.text}
           description={work_description.html}
+          link={work_link.url}
           image={work_image.localFile.childImageSharp.fluid}
         />
       )

@@ -6,6 +6,11 @@ const OuterContainer = styled.div`
   & > div:nth-of-type(2n-1) {
     flex-direction: row-reverse;
 
+    .work_description {
+      padding-left: 0;
+      padding-right: 3rem;
+    }
+
     @media (max-width: 800px) {
       flex-direction: column;
     }
@@ -53,7 +58,7 @@ const Text = styled.div`
   }
 
   @media (min-width: 1200px) {
-    padding: 2rem 3rem 1rem;
+    padding: 2rem 0 1rem 3rem;
   }
 `
 
@@ -68,7 +73,7 @@ const SingleSkill = ({ title, description, image }) => (
         className="image"
       />
     </Image>
-    <Text>
+    <Text className="work_description">
       <h1>{title}</h1>
       <div dangerouslySetInnerHTML={{ __html: description }} />
     </Text>
