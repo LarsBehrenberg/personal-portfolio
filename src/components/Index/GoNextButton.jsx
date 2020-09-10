@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import LocalizedLink from '../LocalizedLink'
 
 const Container = styled.div`
   margin-top: 10vh;
@@ -13,7 +14,7 @@ const Container = styled.div`
   }
 
   .svg-transition {
-    transition: all 1s;
+    transition: all 0.7s;
     transform-origin: 50% 50%;
   }
 
@@ -31,7 +32,7 @@ const Container = styled.div`
 
 const GoNextButton = () => (
   <Container>
-    <a href="/#testimonials">
+    <LocalizedLink to="#testimonials">
       <svg
         width="30"
         height="30"
@@ -58,7 +59,7 @@ const GoNextButton = () => (
           </clipPath>
         </defs>
       </svg>
-    </a>
+    </LocalizedLink>
   </Container>
 )
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { graphql } from 'gatsby'
 import {
   LandingBio,
@@ -12,6 +12,28 @@ import { LocaleContext } from '../components/Layout'
 const Index = ({ data: { homepage }, pageContext: { locale }, location }) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
+
+  // Fade out scroll button after scrolling down
+  useEffect(() => {
+    let prevScrollpos = window.pageYOffset
+
+    window.onscroll = function () {
+      let currentScrollPos = window.pageYOffset
+      if (
+        prevScrollpos > currentScrollPos &&
+        document.getElementById('scroll-button')
+      ) {
+        document.getElementById('scroll-button').style.opacity = '1'
+      } else if (document.getElementById('scroll-button')) {
+        document.getElementById('scroll-button').style.opacity = '0'
+        document.getElementById('scroll-button').style.cursor = 'default'
+      }
+      prevScrollpos = currentScrollPos
+    }
+
+    return
+  })
+
   return (
     <>
       <SEO pathname={location.pathname} locale={locale} />
