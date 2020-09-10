@@ -8,6 +8,7 @@ import GoNextButton from './index/GoNextButton'
 import LandingBio from './index/LandingBio'
 import Skills from './index/Skills'
 import Testimonials from './index/Testimonials'
+import WorksList from './WorksList'
 
 export {
   SEO,
@@ -19,4 +20,5 @@ export {
   LandingBio,
   Skills,
   Testimonials,
+  WorksList,
 }
