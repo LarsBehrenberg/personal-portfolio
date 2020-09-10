@@ -9,6 +9,7 @@ import LandingBio from './index/LandingBio'
 import Skills from './index/Skills'
 import Testimonials from './index/Testimonials'
 import WorksList from './WorksList'
+import Transition from './Transition'
 
 export {
   SEO,
@@ -21,4 +22,5 @@ export {
   Skills,
   Testimonials,
   WorksList,
+  Transition,
 }
