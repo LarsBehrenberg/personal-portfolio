@@ -4,6 +4,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Global, css } from '@emotion/core'
+import styled from '@emotion/styled'
 import { ThemeProvider } from 'emotion-theming'
 
 import { theme, reset } from '../styles'
@@ -42,6 +43,13 @@ const globalStyle = css`
   }
 `
 
+const Content = styled.div`
+  margin: 0 auto;
+  max-width: 1300px;
+  padding: 0 1.0875rem 0rem;
+  padding-top: 0;
+`
+
 const LocaleContext = React.createContext()
 
 const Layout = ({ children, pageContext: { locale } }) => (
@@ -51,7 +59,7 @@ const Layout = ({ children, pageContext: { locale } }) => (
         <Global styles={globalStyle} />
         <SkipNavLink />
         <Header />
-        {children}
+        <Content>{children}</Content>
         <Particles />
       </>
     </ThemeProvider>
